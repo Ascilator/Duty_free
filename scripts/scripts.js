@@ -142,9 +142,19 @@ jQuery(function () {
     }
     function burger() {
         $('.burger').click(function () {
-            $(this).toggleClass('_active');
+            $('.black_href').toggleClass('_active');
             $('.menu').toggleClass('_active');
             $('body').toggleClass('_lock');
+        })
+        $('.menu_cross').click(function () {
+            $('.black_href').removeClass('_active');
+            $('.menu').removeClass('_active');
+            $('body').removeClass('_lock');
+        })
+        $('.black_href').click(function () {
+            $('.black_href').removeClass('_active');
+            $('.menu').removeClass('_active');
+            $('body').removeClass('_lock');
         })
     }
     function accordion() {
@@ -158,7 +168,19 @@ jQuery(function () {
             $(this).parent().parent().toggleClass('_active');
         })
     }
-
+    function dynamic_adaptive() {
+        if ($('html').width() < 1000) {
+            $('.search_form').prependTo($('.menu'));
+        }
+        $(window).resize(function () {
+            if ($('html').width() < 1000) {
+                $('.search_form').prependTo($('.menu'));
+            } else {
+                $('.search_form').insertAfter($('.big_logo'));
+            }
+        })
+    }
+    dynamic_adaptive();
     accordion();
     burger();
     drop_down();
